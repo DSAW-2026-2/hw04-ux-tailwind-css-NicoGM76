@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="MicroERP Farmacia: gestión sencilla de productos, inventario y ventas."
+  >
+  <title>MicroERP Farmacia</title>
+
+  <script>
+    tailwind = {
+      config: {
+        darkMode: "class"
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    })();
+  </script>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur dark:border-slate-800 dark:bg-slate-950/95">
+    <nav
+      class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8"
+      aria-label="Navegación principal"
+    >
+      <a href="#inicio" class="flex items-center gap-3 font-bold">
+        <span
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-xl text-white"
+          aria-hidden="true"
+        >
+          +
+        </span>
+        <span class="text-lg sm:text-xl">MicroERP Farmacia</span>
+      </a>
+
+      <div class="hidden items-center gap-6 md:flex">
+        <a
+          href="#funciones"
+          class="text-sm font-medium text-slate-600 transition hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+        >
+          Funciones
+        </a>
+        <a
+          href="#roles"
+          class="text-sm font-medium text-slate-600 transition hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+        >
+          Roles
+        </a>
+        <a
+          href="#productos"
+          class="text-sm font-medium text-slate-600 transition hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+        >
+          Productos
+        </a>
+        <a
+          href="#contacto"
+          class="text-sm font-medium text-slate-600 transition hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+        >
+          Contacto
+        </a>
+      </div>
+
+      <button
+        id="theme-toggle"
+        type="button"
+        class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800 dark:focus:ring-offset-slate-950"
+        aria-label="Cambiar modo de color"
+        aria-pressed="false"
+      >
+        <span id="theme-icon" aria-hidden="true">🌙</span>
+        <span id="theme-label" class="ml-2 hidden sm:inline">Oscuro</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="overflow-hidden">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
+        <div>
+          <span
+            class="inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300"
+          >
+            Gestión simple para farmacia
+          </span>
+
+          <h1 class="mt-6 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+            Controla productos, inventario y ventas desde un solo lugar
+          </h1>
+
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+            MicroERP Farmacia centraliza la información básica del negocio y ofrece
+            vistas adaptadas para clientes, vendedores y administradores.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#productos"
+              class="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950"
+            >
+              Explorar productos
+            </a>
+            <a
+              href="#roles"
+              class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-800 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800 dark:focus:ring-offset-slate-950"
+            >
+              Ver roles del sistema
+            </a>
+          </div>
+
+          <dl class="mt-10 grid grid-cols-3 gap-4">
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+              <dt class="text-sm text-slate-500 dark:text-slate-400">Roles</dt>
+              <dd class="mt-1 text-2xl font-black">3</dd>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+              <dt class="text-sm text-slate-500 dark:text-slate-400">Acceso</dt>
+              <dd class="mt-1 text-2xl font-black">24/7</dd>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+              <dt class="text-sm text-slate-500 dark:text-slate-400">Diseño</dt>
+              <dd class="mt-1 text-2xl font-black">Web</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-8 -top-8 h-40 w-40 rounded-full bg-emerald-300/30 blur-3xl dark:bg-emerald-500/10"></div>
+          <div class="absolute -bottom-8 -right-8 h-48 w-48 rounded-full bg-sky-300/30 blur-3xl dark:bg-sky-500/10"></div>
+
+          <div class="relative rounded-3xl border border-slate-200 bg-white p-5 shadow-xl dark:border-slate-800 dark:bg-slate-900 sm:p-6">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-4 dark:border-slate-800">
+              <div>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Panel principal</p>
+                <p class="font-bold">Inventario de farmacia</p>
+              </div>
+              <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                En línea
+              </span>
+            </div>
+
+            <div class="mt-5 grid gap-4 sm:grid-cols-2">
+              <article class="rounded-2xl bg-slate-100 p-4 dark:bg-slate-800">
+                <p class="text-sm text-slate-500 dark:text-slate-400">Productos activos</p>
+                <p class="mt-2 text-3xl font-black">128</p>
+                <p class="mt-2 text-sm text-emerald-700 dark:text-emerald-400">Inventario actualizado</p>
+              </article>
+
+              <article class="rounded-2xl bg-slate-100 p-4 dark:bg-slate-800">
+                <p class="text-sm text-slate-500 dark:text-slate-400">Stock bajo</p>
+                <p class="mt-2 text-3xl font-black">7</p>
+                <p class="mt-2 text-sm text-amber-700 dark:text-amber-300">Requiere revisión</p>
+              </article>
+            </div>
+
+            <div class="mt-4 rounded-2xl border border-slate-200 p-4 dark:border-slate-700">
+              <div class="flex items-center justify-between">
+                <p class="font-semibold">Movimientos recientes</p>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Hoy</span>
+              </div>
+
+              <ul class="mt-4 space-y-3">
+                <li class="flex items-center justify-between gap-3">
+                  <span class="text-sm">Acetaminofén 500 mg</span>
+                  <span class="rounded-lg bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                    +20
+                  </span>
+                </li>
+                <li class="flex items-center justify-between gap-3">
+                  <span class="text-sm">Ibuprofeno 400 mg</span>
+                  <span class="rounded-lg bg-rose-100 px-2 py-1 text-xs font-semibold text-rose-800 dark:bg-rose-950 dark:text-rose-300">
+                    -4
+                  </span>
+                </li>
+                <li class="flex items-center justify-between gap-3">
+                  <span class="text-sm">Suero oral</span>
+                  <span class="rounded-lg bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                    +12
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="funciones" class="border-y border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900/60">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div class="max-w-3xl">
+          <p class="text-sm font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+            Funciones
+          </p>
+          <h2 class="mt-3 text-3xl font-black sm:text-4xl">
+            Lo esencial del negocio, sin una cabina de avión llena de botones
+          </h2>
+          <p class="mt-4 text-slate-600 dark:text-slate-300">
+            La interfaz prioriza búsquedas rápidas, información clara y acciones distintas
+            según el tipo de usuario.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-950">
+            <div class="text-3xl" aria-hidden="true">🔎</div>
+            <h3 class="mt-4 text-xl font-bold">Búsqueda de productos</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">
+              Consulta productos por nombre y encuentra información útil de forma directa.
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-950">
+            <div class="text-3xl" aria-hidden="true">📦</div>
+            <h3 class="mt-4 text-xl font-bold">Control de inventario</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">
+              El vendedor puede revisar stock, valor, código, categoría y ubicación.
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-950 md:col-span-2 lg:col-span-1">
+            <div class="text-3xl" aria-hidden="true">⚙️</div>
+            <h3 class="mt-4 text-xl font-bold">Administración</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">
+              El administrador dispone de operaciones para crear, consultar, actualizar y eliminar productos.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="roles">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div class="text-center">
+          <p class="text-sm font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+            Roles
+          </p>
+          <h2 class="mt-3 text-3xl font-black sm:text-4xl">Una experiencia para cada usuario</h2>
+        </div>
+
+        <div class="mt-10 grid gap-6 lg:grid-cols-3">
+          <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <span class="inline-flex rounded-full bg-sky-100 px-3 py-1 text-sm font-semibold text-sky-800 dark:bg-sky-950 dark:text-sky-300">
+              Cliente
+            </span>
+            <h3 class="mt-5 text-2xl font-bold">Consulta rápida</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-300">
+              Puede navegar y filtrar productos por categoría, nombre o valor.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <span class="inline-flex rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+              Vendedor
+            </span>
+            <h3 class="mt-5 text-2xl font-bold">Inventario al frente</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-300">
+              Visualiza stock, precio, código, categoría y ubicación de cada producto.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <span class="inline-flex rounded-full bg-violet-100 px-3 py-1 text-sm font-semibold text-violet-800 dark:bg-violet-950 dark:text-violet-300">
+              Administrador
+            </span>
+            <h3 class="mt-5 text-2xl font-bold">Control completo</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-300">
+              Gestiona el catálogo y realiza las operaciones CRUD de productos.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="productos" class="border-y border-slate-200 bg-slate-100/70 dark:border-slate-800 dark:bg-slate-900/60">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+              Catálogo
+            </p>
+            <h2 class="mt-3 text-3xl font-black sm:text-4xl">Productos destacados</h2>
+          </div>
+
+          <form class="w-full md:max-w-sm" role="search">
+            <label for="search" class="sr-only">Buscar producto</label>
+            <input
+              id="search"
+              name="search"
+              type="search"
+              placeholder="Buscar producto..."
+              class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+            >
+          </form>
+        </div>
+
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
+            <div class="flex h-28 items-center justify-center rounded-xl bg-emerald-50 text-5xl dark:bg-emerald-950/50" aria-hidden="true">💊</div>
+            <h3 class="mt-4 font-bold">Acetaminofén</h3>
+            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Analgésicos</p>
+            <p class="mt-3 text-lg font-black">$8.500</p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
+            <div class="flex h-28 items-center justify-center rounded-xl bg-sky-50 text-5xl dark:bg-sky-950/50" aria-hidden="true">🧴</div>
+            <h3 class="mt-4 font-bold">Alcohol antiséptico</h3>
+            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Cuidado personal</p>
+            <p class="mt-3 text-lg font-black">$6.900</p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
+            <div class="flex h-28 items-center justify-center rounded-xl bg-amber-50 text-5xl dark:bg-amber-950/50" aria-hidden="true">🩹</div>
+            <h3 class="mt-4 font-bold">Curitas</h3>
+            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Primeros auxilios</p>
+            <p class="mt-3 text-lg font-black">$5.200</p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
+            <div class="flex h-28 items-center justify-center rounded-xl bg-violet-50 text-5xl dark:bg-violet-950/50" aria-hidden="true">🧪</div>
+            <h3 class="mt-4 font-bold">Suero oral</h3>
+            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Hidratación</p>
+            <p class="mt-3 text-lg font-black">$7.300</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div class="rounded-3xl bg-emerald-600 px-6 py-10 text-white sm:px-10 lg:flex lg:items-center lg:justify-between lg:px-12">
+          <div class="max-w-2xl">
+            <h2 class="text-3xl font-black">MicroERP Farmacia</h2>
+            <p class="mt-3 text-emerald-50">
+              Prototipo académico para organizar el flujo básico de consulta y gestión de productos de una farmacia.
+            </p>
+          </div>
+          <a
+            href="#inicio"
+            class="mt-6 inline-flex rounded-xl bg-white px-5 py-3 font-bold text-emerald-700 transition hover:bg-emerald-50 lg:mt-0"
+          >
+            Volver al inicio
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-8 text-sm text-slate-500 dark:text-slate-400 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>MicroERP Farmacia · Proyecto académico 2026</p>
+      <p>UX + Tailwind CSS</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const themeLabel = document.getElementById("theme-label");
+
+    function updateThemeButton() {
+      const isDark = document.documentElement.classList.contains("dark");
+
+      themeToggle.setAttribute("aria-pressed", String(isDark));
+      themeIcon.textContent = isDark ? "☀️" : "🌙";
+      themeLabel.textContent = isDark ? "Claro" : "Oscuro";
+    }
+
+    themeToggle.addEventListener("click", function () {
+      const isDark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      updateThemeButton();
+    });
+
+    updateThemeButton();
+  </script>
+</body>
+</html>
